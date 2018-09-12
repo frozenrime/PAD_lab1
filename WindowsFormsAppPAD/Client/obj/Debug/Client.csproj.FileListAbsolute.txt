@@ -1,0 +1,10 @@
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\Client\bin\Debug\Client.exe.config
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\Client\bin\Debug\Client.exe
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\Client\bin\Debug\Client.pdb
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\Client\bin\Debug\SimpleTCP.dll
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\Client\obj\Debug\Client.Form1.resources
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\Client\obj\Debug\Client.Properties.Resources.resources
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\Client\obj\Debug\Client.csproj.GenerateResource.Cache
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\Client\obj\Debug\Client.exe
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\Client\obj\Debug\Client.pdb
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\Client\obj\Debug\Client.csprojResolveAssemblyReference.cache

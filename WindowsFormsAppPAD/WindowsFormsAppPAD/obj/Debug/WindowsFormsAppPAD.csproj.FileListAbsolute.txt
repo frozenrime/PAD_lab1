@@ -1,0 +1,10 @@
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\WindowsFormsAppPAD\bin\Debug\WindowsFormsAppPAD.exe.config
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\WindowsFormsAppPAD\bin\Debug\WindowsFormsAppPAD.exe
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\WindowsFormsAppPAD\bin\Debug\WindowsFormsAppPAD.pdb
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\WindowsFormsAppPAD\bin\Debug\SimpleTCP.dll
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\WindowsFormsAppPAD\obj\Debug\WindowsFormsAppPAD.csprojResolveAssemblyReference.cache
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\WindowsFormsAppPAD\obj\Debug\WindowsFormsAppPAD.Form1.resources
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\WindowsFormsAppPAD\obj\Debug\WindowsFormsAppPAD.Properties.Resources.resources
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\WindowsFormsAppPAD\obj\Debug\WindowsFormsAppPAD.csproj.GenerateResource.Cache
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\WindowsFormsAppPAD\obj\Debug\WindowsFormsAppPAD.exe
+c:\users\maria\documents\visual studio 2017\Projects\WindowsFormsAppPAD\WindowsFormsAppPAD\obj\Debug\WindowsFormsAppPAD.pdb
