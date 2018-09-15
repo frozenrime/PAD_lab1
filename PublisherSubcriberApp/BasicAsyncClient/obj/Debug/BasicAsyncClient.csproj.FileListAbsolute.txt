@@ -1,0 +1,8 @@
+C:\Users\Maria\Documents\NetworkingSamples-master\BasicAsyncClient\bin\Debug\BasicAsyncClient.exe.config
+C:\Users\Maria\Documents\NetworkingSamples-master\BasicAsyncClient\bin\Debug\BasicAsyncClient.exe
+C:\Users\Maria\Documents\NetworkingSamples-master\BasicAsyncClient\bin\Debug\BasicAsyncClient.pdb
+C:\Users\Maria\Documents\NetworkingSamples-master\BasicAsyncClient\obj\Debug\BasicAsyncClient.Properties.Resources.resources
+C:\Users\Maria\Documents\NetworkingSamples-master\BasicAsyncClient\obj\Debug\BasicAsyncClient.csproj.GenerateResource.Cache
+C:\Users\Maria\Documents\NetworkingSamples-master\BasicAsyncClient\obj\Debug\BasicAsyncClient.exe
+C:\Users\Maria\Documents\NetworkingSamples-master\BasicAsyncClient\obj\Debug\BasicAsyncClient.pdb
+C:\Users\Maria\Documents\NetworkingSamples-master\BasicAsyncClient\obj\Debug\Publisher.ClientForm.resources
