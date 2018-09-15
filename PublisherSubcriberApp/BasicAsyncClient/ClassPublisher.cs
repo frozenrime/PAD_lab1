@@ -33,7 +33,9 @@ namespace Publisher
         {
             List<byte> byteList = new List<byte>();
             byteList.AddRange(BitConverter.GetBytes(Host.Length));
+            byteList.AddRange(Encoding.ASCII.GetBytes(Host));
             byteList.AddRange(BitConverter.GetBytes(Ip.Length));
+            byteList.AddRange(Encoding.ASCII.GetBytes(Ip));
             byteList.AddRange(BitConverter.GetBytes(Message.Length));
             byteList.AddRange(Encoding.ASCII.GetBytes(Message));
             return byteList.ToArray();
