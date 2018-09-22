@@ -107,7 +107,7 @@ namespace Publisher
             try
             {
                 // Serialize the textBoxes text before sending.
-                ClassPublisher publisher = new ClassPublisher(textBoxAddress.Text, textBox1.Text, textBoxEmployee.Text);
+                ClassPublisher publisher = new ClassPublisher(textBoxAddress.Text, textBox_Canal_id.Text, textBoxEmployee.Text);
                 byte[] buffer = publisher.ToByteArray();
                 clientSocket.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, SendCallback, null);
             }
@@ -129,7 +129,7 @@ namespace Publisher
             {
                 clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 // Connect to the specified host.
-                var endPoint = new IPEndPoint(IPAddress.Parse(textBoxAddress.Text), 55555);
+                var endPoint = new IPEndPoint(IPAddress.Parse(textBoxAddress.Text), 55550);
                 clientSocket.BeginConnect(endPoint, ConnectCallback, null);
             }
             catch (SocketException ex)

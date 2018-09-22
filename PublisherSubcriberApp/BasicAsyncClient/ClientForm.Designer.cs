@@ -34,7 +34,7 @@
             this.textBoxEmployee = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_Canal_id = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonSend
@@ -77,10 +77,11 @@
             this.textBoxAddress.Name = "textBoxAddress";
             this.textBoxAddress.Size = new System.Drawing.Size(185, 20);
             this.textBoxAddress.TabIndex = 4;
+            this.textBoxAddress.Text = "89.41.100.129";
             // 
             // textBoxEmployee
             // 
-            this.textBoxEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBoxEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEmployee.Location = new System.Drawing.Point(53, 113);
             this.textBoxEmployee.Name = "textBoxEmployee";
@@ -89,7 +90,7 @@
             // 
             // label1
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(50, 86);
@@ -100,30 +101,30 @@
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(264, 28);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(88, 13);
+            this.label2.Size = new System.Drawing.Size(49, 13);
             this.label2.TabIndex = 9;
-            this.label2.Text = "Introduceti hostul";
+            this.label2.Text = "Canal_Id";
             // 
-            // textBox1
+            // textBox_Canal_id
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.textBox1.Location = new System.Drawing.Point(267, 54);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(185, 20);
-            this.textBox1.TabIndex = 10;
-            this.textBox1.Text = "55555";
+            this.textBox_Canal_id.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.textBox_Canal_id.Location = new System.Drawing.Point(267, 54);
+            this.textBox_Canal_id.Name = "textBox_Canal_id";
+            this.textBox_Canal_id.Size = new System.Drawing.Size(185, 20);
+            this.textBox_Canal_id.TabIndex = 10;
+            this.textBox_Canal_id.Text = "0";
             // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(484, 194);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_Canal_id);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBoxEmployee);
             this.Controls.Add(this.label1);
@@ -149,7 +150,7 @@
         private System.Windows.Forms.TextBox textBoxEmployee;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_Canal_id;
     }
 }
 
