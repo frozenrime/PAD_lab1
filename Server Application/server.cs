@@ -61,8 +61,8 @@ namespace Server_Application
                 socket.Shutdown(SocketShutdown.Both);
                 socket.Close();
             }
-
             pub_serverSocket.Close();
+            sub_serverSocket.Close();
         }
 
         private static void Pub_AcceptCallback(IAsyncResult AR)
@@ -134,7 +134,7 @@ namespace Server_Application
             Array.Copy(buffer, 4, msgBuf, 0, received);
 
             string text = Encoding.ASCII.GetString(msgBuf);
-            Console.WriteLine(DateTime.Now.ToLongTimeString() + " Canal id: {0} Msg: " + text , canal_id);
+            Console.WriteLine("#" + DateTime.Now.ToLongTimeString() + ">> Canal id: {0}, Dispatch Msg: \n" + text , canal_id);
 
             DispatchMsg(canal_id, msgBuf);
             current.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, Pub_ReceiveCallback, current);
