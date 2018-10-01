@@ -16,3 +16,23 @@ C:\Users\Maria\Documents\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\BasicA
 C:\Users\Maria\Documents\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\PublisherApp.csproj.GenerateResource.Cache
 C:\Users\Maria\Documents\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\BasicAsyncClient.exe
 C:\Users\Maria\Documents\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\BasicAsyncClient.pdb
+D:\Education\UTM (FCIM)\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\bin\Debug\BasicAsyncClient.exe.config
+D:\Education\UTM (FCIM)\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\bin\Debug\BasicAsyncClient.exe
+D:\Education\UTM (FCIM)\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\bin\Debug\BasicAsyncClient.pdb
+D:\Education\UTM (FCIM)\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\PublisherApp.csprojAssemblyReference.cache
+D:\Education\UTM (FCIM)\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\Publisher.ClientForm.resources
+D:\Education\UTM (FCIM)\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\BasicAsyncClient.Properties.Resources.resources
+D:\Education\UTM (FCIM)\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\PublisherApp.csproj.GenerateResource.cache
+D:\Education\UTM (FCIM)\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\PublisherApp.csproj.CoreCompileInputs.cache
+D:\Education\UTM (FCIM)\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\BasicAsyncClient.exe
+D:\Education\UTM (FCIM)\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\BasicAsyncClient.pdb
+C:\Users\crisg\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\bin\Debug\BasicAsyncClient.exe.config
+C:\Users\crisg\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\bin\Debug\BasicAsyncClient.exe
+C:\Users\crisg\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\bin\Debug\BasicAsyncClient.pdb
+C:\Users\crisg\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\PublisherApp.csprojResolveAssemblyReference.cache
+C:\Users\crisg\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\Publisher.ClientForm.resources
+C:\Users\crisg\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\BasicAsyncClient.Properties.Resources.resources
+C:\Users\crisg\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\PublisherApp.csproj.GenerateResource.Cache
+C:\Users\crisg\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\PublisherApp.csproj.CoreCompileInputs.cache
+C:\Users\crisg\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\BasicAsyncClient.exe
+C:\Users\crisg\OneDrive - Technical University of Moldova\TI-153\Anul 4\PAD\PAD_lab1\PublisherSubcriberApp\BasicAsyncClient\obj\Debug\BasicAsyncClient.pdb

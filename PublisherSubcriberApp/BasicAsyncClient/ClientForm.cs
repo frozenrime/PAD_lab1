@@ -129,8 +129,9 @@ namespace Publisher
             {
                 clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 // Connect to the specified host.
-                var endPoint = new IPEndPoint(IPAddress.Parse(textBoxAddress.Text), 55550);
+                var endPoint = new IPEndPoint(IPAddress.Parse(textBoxAddress.Text), 55540);
                 clientSocket.BeginConnect(endPoint, ConnectCallback, null);
+                buttonConnect.Enabled = false;
             }
             catch (SocketException ex)
             {

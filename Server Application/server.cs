@@ -11,8 +11,8 @@ namespace Server_Application
 {
     class Program
     {
-        private static readonly Socket pub_serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         private static readonly Socket sub_serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        private static readonly Socket pub_serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         private static readonly List<Socket> clientSockets = new List<Socket>();
         //private static readonly List<UserData> pubUsers = new List<UserData>();
         private static readonly List<UserData> subUsers = new List<UserData>();
@@ -25,13 +25,13 @@ namespace Server_Application
             Console.Title = "Server";
 
             #region Publishers_SetupServer
-            pub_serverSocket.Bind(new IPEndPoint(IPAddress.Any, 55550));
+            pub_serverSocket.Bind(new IPEndPoint(IPAddress.Any, 55540));
             pub_serverSocket.Listen(0);
             pub_serverSocket.BeginAccept(Pub_AcceptCallback, null);
             #endregion
 
             #region Subscribers_SetupServer
-            sub_serverSocket.Bind(new IPEndPoint(IPAddress.Any, 55540));
+            sub_serverSocket.Bind(new IPEndPoint(IPAddress.Any, 55550));
             sub_serverSocket.Listen(0);
             sub_serverSocket.BeginAccept(Sub_AcceptCallback, null);
             #endregion
@@ -89,9 +89,11 @@ namespace Server_Application
             Socket socket;
             UserData user = new UserData();
 
+            socket = (Socket)AR.AsyncState;
+
             try
             {
-                socket = pub_serverSocket.EndAccept(AR);
+                socket = sub_serverSocket.EndAccept(AR);
             }
             catch (ObjectDisposedException)
             {
@@ -102,7 +104,7 @@ namespace Server_Application
             subUsers.Add(user);
             user.socket = socket;
 
-            socket.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, user.ReceiveCallback, socket);
+            socket.BeginReceive(user.buffer, 0, BUFFER_SIZE, SocketFlags.None, user.ReceiveCallback, socket);
             Console.WriteLine("Subscriber connected");
             pub_serverSocket.BeginAccept(Pub_AcceptCallback, null);
         }
@@ -131,10 +133,10 @@ namespace Server_Application
             canal_id = BitConverter.ToInt32(recBuf, 0);
 
             byte[] msgBuf = new byte[received - 4];
-            Array.Copy(buffer, 4, msgBuf, 0, received);
+            Array.Copy(buffer, 4, msgBuf, 0, received - 4);
 
             string text = Encoding.ASCII.GetString(msgBuf);
-            Console.WriteLine("#" + DateTime.Now.ToLongTimeString() + ">> Canal id: {0}, Dispatch Msg: \n" + text , canal_id);
+            Console.WriteLine("#" + DateTime.Now.ToLongTimeString() + " >> Canal id: {0}, Dispatch Msg: \n" + text , canal_id);
 
             DispatchMsg(canal_id, msgBuf);
             current.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, Pub_ReceiveCallback, current);
@@ -150,6 +152,5 @@ namespace Server_Application
                 }
             }
         }
-
     }
 }
