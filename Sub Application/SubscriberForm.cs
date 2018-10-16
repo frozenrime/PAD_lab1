@@ -109,27 +109,6 @@ namespace Sub_Application
             });
         }
 
-        //private void buttonSend_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        // Serialize the textBoxes text before sending.
-        //        ClassPublisher publisher = new ClassPublisher(textBoxAddress.Text, textBox_Canal_id.Text, textBoxEmployee.Text);
-        //        byte[] buffer = publisher.ToByteArray();
-        //        clientSocket.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, SendCallback, null);
-        //    }
-        //    catch (SocketException ex)
-        //    {
-        //        ShowErrorDialog(ex.Message);
-        //        UpdateControlStates(false);
-        //    }
-        //    catch (ObjectDisposedException ex)
-        //    {
-        //        ShowErrorDialog(ex.Message);
-        //        UpdateControlStates(false);
-        //    }
-        //}
-
         private void buttonConnect_Click(object sender, EventArgs e)
         {
             try
@@ -139,7 +118,10 @@ namespace Sub_Application
                 var endPoint = new IPEndPoint(IPAddress.Parse(textBoxAddress.Text), 55550);
                 clientSocket.BeginConnect(endPoint, ConnectCallback, null);
                 buttonConnect.Enabled = false;
+                buttonConnect.Visible = false;
                 buttonSubscribe.Enabled = true;
+                button_Disconect.Enabled = true;
+                button_Disconect.Visible = true;
             }
             catch (SocketException ex)
             {
@@ -155,9 +137,18 @@ namespace Sub_Application
         {
             try
             {
+                byte[] recBuf = new byte[20];
+
                 int canal_id = Int32.Parse(textBox_Canal_id.Text);
-                byte[] buffer = BitConverter.GetBytes(canal_id);
-                clientSocket.BeginSend(buffer, 0, buffer.Length, SocketFlags.None, SendCallback, null);
+                recBuf = BitConverter.GetBytes(canal_id);
+                Array.Copy(recBuf, 0, buffer, 0, recBuf.Length);
+
+                string userId = textBoxUserId.Text;
+                recBuf = Encoding.ASCII.GetBytes(userId);
+                Array.Copy(recBuf, 0, buffer, 4, userId.Length);
+
+
+                clientSocket.BeginSend(buffer, 0, (4 + 20), SocketFlags.None, SendCallback, null);
             }
             catch (SocketException ex)
             {
@@ -171,9 +162,31 @@ namespace Sub_Application
             }
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void button_Disconect_Click(object sender, EventArgs e)
         {
+            if (clientSocket.Connected)
+            {
+                // Release the socket.
+                clientSocket.Shutdown(SocketShutdown.Both);
+                clientSocket.BeginDisconnect(true, new AsyncCallback(DisconnectCallBack), clientSocket);
+                
+                //clientSocket.Disconnect(true);
+                //clientSocket.Dispose();
+                //clientSocket.Close();
+                buttonConnect.Enabled = true;
+                buttonConnect.Visible = true;
+                buttonSubscribe.Enabled = false;
+                button_Disconect.Enabled = false;
+                button_Disconect.Visible = false;
+            }
+        }
 
+
+        private static void DisconnectCallBack(IAsyncResult AR)
+        {
+            // Complete the disconnect request.
+            Socket client = (Socket)AR.AsyncState;
+            client.EndDisconnect(AR);
         }
     }
 }

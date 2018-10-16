@@ -9,9 +9,10 @@ namespace App.Data
         Publisher,
         Subscriber
     }
-    class Message
+
+    public class Message
     {
-        string msg;
+        public string msg;
     }
 
     public class UserData
@@ -20,9 +21,10 @@ namespace App.Data
         public int listening_canal_id;
         public UserTip usertip;
         public Socket socket;
-        public byte[] _userId = new byte[20];
-        public List<String> _deadLetter = new List<String>();
-        public DateTime _lastTime;
+        public string _userId;
+        public List<Message> _deadLetter = new List<Message>();
+
+        public event EventHandler OnDisconect;
 
         public void ReceiveCallback(IAsyncResult AR)
         {
@@ -38,12 +40,21 @@ namespace App.Data
             {
                 Console.WriteLine("ERROR! Client forcefully disconnected");
                 // Don't shutdown because the socket may be disposed and its disconnected anyway.
-                //TODO: Need to call a Remove function from clientSockets list!!!
+                // Event OnDisconect
+                if (OnDisconect != null)
+                {
+                    OnDisconect(socket, EventArgs.Empty);
+                }
+                socket = null;
                 current.Close();
-                //clientSockets.Remove(current);
                 return;
             }
-
+            if (received == 0)
+            {
+                if (OnDisconect != null)
+                    OnDisconect(socket, EventArgs.Empty);
+                return;
+            }
             byte[] recBuf = new byte[received];
             Array.Copy(this.buffer, recBuf, received);
             canal_id = BitConverter.ToInt32(recBuf, 0);

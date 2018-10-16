@@ -42,6 +42,7 @@
             this.textBoxUserId = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox_Canal_id = new System.Windows.Forms.NumericUpDown();
+            this.button_Disconect = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.textBox_Canal_id)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,7 +115,6 @@
             this.label2.Size = new System.Drawing.Size(100, 25);
             this.label2.TabIndex = 9;
             this.label2.Text = "Canal_ID";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // buttonSubscribe
             // 
@@ -159,11 +159,25 @@
             this.textBox_Canal_id.Size = new System.Drawing.Size(120, 31);
             this.textBox_Canal_id.TabIndex = 14;
             // 
+            // button_Disconect
+            // 
+            this.button_Disconect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_Disconect.Enabled = false;
+            this.button_Disconect.Location = new System.Drawing.Point(482, 698);
+            this.button_Disconect.Margin = new System.Windows.Forms.Padding(6);
+            this.button_Disconect.Name = "button_Disconect";
+            this.button_Disconect.Size = new System.Drawing.Size(150, 44);
+            this.button_Disconect.TabIndex = 15;
+            this.button_Disconect.Text = "Disconect";
+            this.button_Disconect.UseVisualStyleBackColor = true;
+            this.button_Disconect.Click += new System.EventHandler(this.button_Disconect_Click);
+            // 
             // SubscriberForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 750);
+            this.Controls.Add(this.button_Disconect);
             this.Controls.Add(this.textBox_Canal_id);
             this.Controls.Add(this.textBoxUserId);
             this.Controls.Add(this.label3);
@@ -196,5 +210,6 @@
         private System.Windows.Forms.TextBox textBoxUserId;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown textBox_Canal_id;
+        private System.Windows.Forms.Button button_Disconect;
     }
 }

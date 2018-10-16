@@ -15,9 +15,10 @@ namespace Server_Application
         private static readonly Socket pub_serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         private static readonly List<Socket> clientSockets = new List<Socket>();
         //private static readonly List<UserData> pubUsers = new List<UserData>();
-        private static readonly List<UserData> subUsers = new List<UserData>();
+        private static readonly System.Collections.Concurrent.ConcurrentBag<UserData> subUsers = new System.Collections.Concurrent.ConcurrentBag<UserData>();
         private const int BUFFER_SIZE = 2048;
-        private const int PORT = 100;
+        private const int SUB_PORT = 55540;
+        private const int PUB_PORT = 55550;
         private static readonly byte[] buffer = new byte[BUFFER_SIZE];
 
         static void Main()
@@ -25,26 +26,26 @@ namespace Server_Application
             Console.Title = "Server";
 
             #region Publishers_SetupServer
-            pub_serverSocket.Bind(new IPEndPoint(IPAddress.Any, 55540));
+            pub_serverSocket.Bind(new IPEndPoint(IPAddress.Any, SUB_PORT));
             pub_serverSocket.Listen(0);
             pub_serverSocket.BeginAccept(Pub_AcceptCallback, null);
             #endregion
 
             #region Subscribers_SetupServer
-            sub_serverSocket.Bind(new IPEndPoint(IPAddress.Any, 55550));
+            sub_serverSocket.Bind(new IPEndPoint(IPAddress.Any, PUB_PORT));
             sub_serverSocket.Listen(0);
             sub_serverSocket.BeginAccept(Sub_AcceptCallback, null);
             #endregion
 
             Console.WriteLine("Server started...");
-            Console.ReadLine(); // When we press enter close everything
+            Console.ReadLine(); 
             CloseAllSockets();
         }
 
         private static void SetupServer()
         {
             Console.WriteLine("Setting up server...");
-            pub_serverSocket.Bind(new IPEndPoint(IPAddress.Any, PORT));
+            pub_serverSocket.Bind(new IPEndPoint(IPAddress.Any, SUB_PORT));
             pub_serverSocket.Listen(0);
             pub_serverSocket.BeginAccept(Pub_AcceptCallback, null);
             Console.WriteLine("Server setup complete");
@@ -87,9 +88,6 @@ namespace Server_Application
         private static void Sub_AcceptCallback(IAsyncResult AR)
         {
             Socket socket;
-            UserData user = new UserData();
-
-            socket = (Socket)AR.AsyncState;
 
             try
             {
@@ -101,19 +99,90 @@ namespace Server_Application
             }
 
             clientSockets.Add(socket);
-            subUsers.Add(user);
-            user.socket = socket;
 
-            socket.BeginReceive(user.buffer, 0, BUFFER_SIZE, SocketFlags.None, user.ReceiveCallback, socket);
+            socket.BeginReceive(buffer, 0, BUFFER_SIZE, SocketFlags.None, Sub_RegCallback, socket);
             Console.WriteLine("Subscriber connected");
-            pub_serverSocket.BeginAccept(Pub_AcceptCallback, null);
+            sub_serverSocket.BeginAccept(Sub_AcceptCallback, null);
         }
 
-        private static void Pub_ReceiveCallback(IAsyncResult AR)
+        private static void Sub_RegCallback(IAsyncResult AR)
+        {
+            Socket socket = (Socket)AR.AsyncState;
+            UserData user = null;
+            int received;
+
+            try
+            {
+                if (!socket.Connected)
+                {
+                    socket.Shutdown(SocketShutdown.Both);
+                    socket.Close();
+                    clientSockets.Remove(socket);
+                    return;
+                }
+                received = socket.EndReceive(AR);
+            }
+            catch (SocketException)
+            {
+                Console.WriteLine("Client forcefully disconnected");
+                // Don't shutdown because the socket may be disposed and its disconnected anyway.
+                socket.Close();
+                clientSockets.Remove(socket);
+                return;
+            }
+
+            byte[] recBuf = new byte[received];
+            Array.Copy(buffer, recBuf, received);
+            int canal_id = BitConverter.ToInt32(recBuf, 0);
+
+            Array.Copy(buffer, 4, recBuf, 0, received - 4);
+            string userId = Encoding.ASCII.GetString(recBuf);
+
+            bool isNewUser = true;
+            foreach (UserData subscriber in subUsers)
+            {
+                if (subscriber._userId == userId)
+                {
+                    user = subscriber;
+                    user.socket = socket;
+                    user.listening_canal_id = canal_id;
+                    isNewUser = false;
+                    break;
+                }
+            }
+
+            if (isNewUser)
+            {
+                user = new UserData();
+                subUsers.Add(user);
+                user._userId = userId;
+                user.listening_canal_id = canal_id;
+                user.socket = socket;
+                user.OnDisconect += new EventHandler(_OnUserDisconect);
+            }
+            else
+            {
+                foreach(Message msg in user._deadLetter)
+                    socket.Send(Encoding.ASCII.GetBytes(msg.msg));//
+                user._deadLetter.Clear();
+            }
+
+            socket.BeginReceive(user.buffer, 0, BUFFER_SIZE, SocketFlags.None, user.ReceiveCallback, socket);
+            Console.WriteLine("Subscriber added.");
+            //pub_serverSocket.BeginAccept(Pub_AcceptCallback, null);
+            sub_serverSocket.BeginAccept(Sub_AcceptCallback, null);
+        }
+        async static void _OnUserDisconect(object sender, EventArgs e)
+        {
+            clientSockets.Remove((Socket)sender);
+        }
+
+            private static void Pub_ReceiveCallback(IAsyncResult AR)
         {
             Socket current = (Socket)AR.AsyncState;
             int received;
             int canal_id;
+            int corr_id;
 
             try
             {
@@ -122,7 +191,7 @@ namespace Server_Application
             catch (SocketException)
             {
                 Console.WriteLine("Client forcefully disconnected");
-                // Don't shutdown because the socket may be disposed and its disconnected anyway.
+                
                 current.Close();
                 clientSockets.Remove(current);
                 return;
@@ -131,9 +200,10 @@ namespace Server_Application
             byte[] recBuf = new byte[received];
             Array.Copy(buffer, recBuf, received);
             canal_id = BitConverter.ToInt32(recBuf, 0);
+            corr_id = BitConverter.ToInt32(recBuf, 4);
 
-            byte[] msgBuf = new byte[received - 4];
-            Array.Copy(buffer, 4, msgBuf, 0, received - 4);
+            byte[] msgBuf = new byte[received - 8];
+            Array.Copy(buffer, 8, msgBuf, 0, received - 8);
 
             string text = Encoding.ASCII.GetString(msgBuf);
             Console.WriteLine("#" + DateTime.Now.ToLongTimeString() + " >> Canal id: {0}, Dispatch Msg: \n" + text , canal_id);
@@ -148,7 +218,15 @@ namespace Server_Application
             {
                 if(subscriber.listening_canal_id == canal_id)
                 {
-                    subscriber.socket.Send(msgBuf);
+                    if (subscriber.socket != null)
+                        subscriber.socket.Send(msgBuf);
+                    else
+                    {
+                        Message msg = new Message();
+                        String msgString = Encoding.ASCII.GetString(msgBuf);
+                        msg.msg = msgString;
+                        subscriber._deadLetter.Add(msg);
+                    }
                 }
             }
         }
